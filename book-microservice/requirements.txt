@@ -1,0 +1,8 @@
+requests
+flask
+pymongo
+flask_pymongo
+jsonify
+werkzeug
+jinja2
+itsdangerous
