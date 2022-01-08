@@ -2,8 +2,8 @@ version: "3.6"
 services:
   app:
     build: 
-      context: ..
-      dockerfile: .books
+      context: ./books
+      dockerfile: Dockerfile
     command: python -u app.py
     ports:
       - "8000:5000"
