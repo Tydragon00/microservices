@@ -1,12 +1,14 @@
 version: "3.6"
 services:
   app:
-    build: .
+    build: 
+      context: ..
+      dockerfile: .books
     command: python -u app.py
     ports:
       - "8000:5000"
     volumes:
-      - .:/app
+      - .:/books/app
     links:
       - db
   db:

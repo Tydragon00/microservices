@@ -17,7 +17,7 @@ def read_all_test():
     
 
 def create_test():
-    jtest = open('book-microservice/sample_test.json')
+    jtest = open('microservice/books/sample_test.json')
     try:
         r = requests.post('http://localhost:8000/book', json =json.load(jtest))     
     except requests.exceptions.ConnectionError:
@@ -30,7 +30,7 @@ def create_test():
         print("Something is wrong, status code: ", r.status_code)
 
 def update_test():
-    jtest = open('book-microservice/sample_update_test.json')
+    jtest = open('microservice/books/sample_update_test.json')
     try:
         r = requests.put('http://localhost:8000/book/Test', json =json.load(jtest))   
     except requests.exceptions.ConnectionError:
