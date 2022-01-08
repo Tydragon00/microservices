@@ -1,5 +1,7 @@
 version: "3.6"
 services:
+
+#books
   app:
     build: 
       context: ./books
@@ -20,6 +22,21 @@ services:
       - mongodb_data:/data/db
     ports:
       - 27017:27017
+
+
+
+ #customer
+  mysql:
+      image: mysql:8
+      container_name: customer-db
+      command: --default-authentication-plugin=mysql_native_password      
+      environment:
+        MYSQL_DATABASE: mysql
+        MYSQL_ROOT_PASSWORD: mysql
+      restart: always
+      ports:
+        - 3306:3306
+
 
 
 volumes: 
