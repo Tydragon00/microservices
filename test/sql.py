@@ -22,12 +22,14 @@ try:
 except:
   print("Table 'customer' already exists")
 
-mycursor.execute("SELECT * FROM customer")
 
 
-myresult = mycursor.fetchall()
+sql = "INSERT INTO customer (name, surname) VALUES (%s, %s)"
+val = ("John", "Highway")
+mycursor.execute(sql, val)
 
-for x in myresult:
-  print(x)
+mydb.commit()
+
+print(mycursor.rowcount, "record inserted.")
 
 

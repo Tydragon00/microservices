@@ -36,7 +36,7 @@ except:
 def get_all_books():
   mycursor.execute("SELECT * FROM customers")
   myresult = mycursor.fetchall()
-  
+
   str=""
 
   for x in myresult:
@@ -44,6 +44,14 @@ def get_all_books():
     str+=x
 
   return x 
+
+@app.route('/customer', methods=['POST'])
+def add_book():
+ sql = "INSERT INTO customer (name, surname) VALUES (%s, %s)"
+ val = ("John", "Highway")
+ mycursor.execute(sql, val)
+ mydb.commit()
+ print(mycursor.rowcount, "record inserted.")
 
  
 
