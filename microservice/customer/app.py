@@ -34,14 +34,13 @@ except:
 
 @app.route('/customer', methods=['GET'])
 def get_all_books():
-  mycursor.execute("SELECT * FROM customers")
+  mycursor.execute("SELECT * FROM customer")
   myresult = mycursor.fetchall()
 
   str=""
 
   for x in myresult:
-    print(x)
-    str+=x
+    print(x)    
 
   return x 
 
@@ -51,7 +50,8 @@ def add_book():
  val = ("John", "Highway")
  mycursor.execute(sql, val)
  mydb.commit()
- print(mycursor.rowcount, "record inserted.")
+ return(mycursor.rowcount, "record inserted.")
+
 
  
 
