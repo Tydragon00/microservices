@@ -17,24 +17,17 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-#mycursor.execute("CREATE TABLE customer (customer_id int AUTO_INCREMENT, name VARCHAR(255) NOT NULL , surname VARCHAR(255) NOT NULL, PRIMARY KEY (customer_id))")
-#mycursor.execute("DROP TABLE customer")
-
-
 try:
   mycursor.execute("CREATE TABLE customer (customer_id int AUTO_INCREMENT, name VARCHAR(255) NOT NULL , surname VARCHAR(255) NOT NULL, PRIMARY KEY (customer_id))")
 except:
   print("Table 'customer' already exists")
 
-
-
 mycursor.execute("SELECT * FROM customer")
+
 
 myresult = mycursor.fetchall()
 
 for x in myresult:
   print(x)
-
-print(to_json(myresult))
 
 
