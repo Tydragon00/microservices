@@ -7,3 +7,25 @@ Customer:
 String Id
 String name (nome obbligatorio)
 String surname
+
+
+Insert:
+
+
+sql = "INSERT INTO customer (name, surname) VALUES (%s, %s)"
+val = ("billie", "eilish")
+mycursor.execute(sql, val)
+mydb.commit()
+print(mycursor.rowcount, "record inserted.")
+
+
+
+
+to json
+print(type(myresult))
+id = myresult[0][0]
+name = myresult[0][1]
+surname = myresult[0][2]
+# some JSON:
+x =  f'{{"id": {id}, "name": {name}, "surname": {surname}}}'
+print(x)
