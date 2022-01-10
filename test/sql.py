@@ -1,4 +1,5 @@
 import mysql.connector
+from flask import jsonify
 import json
 
 #convert result from sql to json
@@ -24,12 +25,34 @@ except:
 
 
 
-sql = "INSERT INTO customer (name, surname) VALUES (%s, %s)"
-val = ("John", "Highway")
-mycursor.execute(sql, val)
+def post():
+  sql = "INSERT INTO customer (name, surname) VALUES (%s, %s)"
+  val = ("Hall", "Highway")
+  mycursor.execute(sql, val)
+  mydb.commit()
+  print(mycursor.rowcount, "record inserted.")
 
-mydb.commit()
+def get():
 
-print(mycursor.rowcount, "record inserted.")
+  print("get:")
+  mycursor.execute("SELECT * FROM customer")
+
+  myresult = mycursor.fetchall()
+  customer_all=[]
+
+  for x in myresult:
+    print(x)
+    customer = f'{{"id": "{x[0]}", "name": "{x[1]}", "surname": "{x[2]}"}}'
+    customer_all.append(customer)
+  print(customer_all)
+  
+  
+
+
+  
+
+#post()
+get()
+
 
 

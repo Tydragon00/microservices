@@ -27,6 +27,7 @@ app = Flask(__name__)
 
 try:
   mycursor.execute("CREATE TABLE customer (customer_id int AUTO_INCREMENT, name VARCHAR(255) NOT NULL , surname VARCHAR(255) NOT NULL, PRIMARY KEY (customer_id))")
+  print("Create table 'customer' successful")
 except:
   print("Table 'customer' already exists")
 
