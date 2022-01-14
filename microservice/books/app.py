@@ -41,7 +41,6 @@ def get_one_book(title):
 def add_book():
   book = mongo.db.library_db
   title = request.json['title']
-  #serve il json con il title
   b = book.find_one({'title': title})
   if b:
     output = "Already exists"

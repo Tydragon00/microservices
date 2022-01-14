@@ -4,11 +4,16 @@ import json
 
 #convert result from sql to json
 def to_json(myresult):
-  id = myresult[0][0]
-  name = myresult[0][1]
-  surname = myresult[0][2]
-  x =  f'{{"id": {id}, "name": {name}, "surname": {surname}}}'
-  return x 
+  customer_all=[]
+  for x in myresult:
+    myjson3 = {
+                'id': x[0],
+                'name': x[1],
+                'surname': x[2] 
+            }
+    customer_all.append(myjson3)
+  customer_all_json= f'{{"results": {json.dumps(customer_all)}}}'
+  return(jsonify(customer_all_json))
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -36,23 +41,24 @@ def get():
 
   print("get:")
   mycursor.execute("SELECT * FROM customer")
-
   myresult = mycursor.fetchall()
-  customer_all=[]
+  print(to_json(myresult))
 
-  for x in myresult:
-    print(x)
-    customer = f'{{"id": "{x[0]}", "name": "{x[1]}", "surname": "{x[2]}"}}'
-    customer_all.append(customer)
-  print(customer_all)
-  
-  
+def getLast():
 
-
+  print("get:")
+  mycursor.execute("SELECT * FROM customer ORDER BY customer_id DESC LIMIT 1")
+  myresult = mycursor.fetchall()
+  print(to_json(myresult))
   
 
 #post()
 get()
+#getLast()
+
+
+
+
 
 
 
