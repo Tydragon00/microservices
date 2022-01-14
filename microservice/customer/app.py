@@ -16,9 +16,6 @@ def to_json(myresult):
                 'surname': x[2] 
             }
     customer_all.append(myjson3)
-  #customer_all_json= f'{{"results": {json.dumps(customer_all)}}}'
-  customer_all_json= f'{{"results": {(customer_all)}}}'
-  #return(jsonify(customer_all_json))
   return(jsonify(customer_all))
 
 mydb = mysql.connector.connect(
@@ -53,7 +50,27 @@ def get_one_customer(id):
   mycursor.execute(f"SELECT * FROM customer  WHERE customer_id = {id}")
   myresult = mycursor.fetchall()
   return(to_json(myresult))
-  
+
+@app.route('/customer/<id>', methods=['DELETE'])
+def delete_one_customer(id):
+  print("delete:")
+  mycursor.execute(f"DELETE FROM customer WHERE customer_id = {id}")
+  return jsonify({'result' : "Successfully deleted"})  
+
+@app.route('/customer/<id>', methods=['PUT'])
+def change_one_customer(id):
+  print("put:")
+  name= request.json['name']
+  surname= request.json['surname']  
+  sql = f"UPDATE customer SET name = '{name}' , surname = '{surname}' WHERE customer_id = {id}"
+  mycursor.execute(sql)
+  mydb.commit()
+
+
+
+  mycursor.execute(f"SELECT * FROM customer  WHERE customer_id = {id}")
+  myresult = mycursor.fetchall()
+  return(to_json(myresult))
   
 
 @app.route('/customer', methods=['POST'])
