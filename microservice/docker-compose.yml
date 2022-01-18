@@ -52,6 +52,18 @@ services:
       - .:/customer/app
     links:
       - mysql
+  #borrowing
+  app_borrowing:
+    build: 
+      context: ./borrowing
+      dockerfile: Dockerfile
+    command: python -u app.py
+    ports:
+      - "8002:5002"
+    volumes:
+      - .:/borrowing/app
+    links:
+      - mysql
 
 volumes: 
   mongodb_data: {}

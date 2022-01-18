@@ -1,0 +1,13 @@
+requests
+flask
+pymongo
+flask_pymongo
+jsonify
+werkzeug
+jinja2
+itsdangerous
+mysql-connector
+mysql-connector-python
+PyMySQL
+SQLAlchemy
+datetime
