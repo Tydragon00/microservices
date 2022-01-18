@@ -38,7 +38,7 @@ except:
 
 
 @app.route('/customer', methods=['GET'])
-def get_all_books():
+def get_all_customer():
   print("get:")
   mycursor.execute("SELECT * FROM customer")
   myresult = mycursor.fetchall()
@@ -65,16 +65,13 @@ def change_one_customer(id):
   sql = f"UPDATE customer SET name = '{name}' , surname = '{surname}' WHERE customer_id = {id}"
   mycursor.execute(sql)
   mydb.commit()
-
-
-
   mycursor.execute(f"SELECT * FROM customer  WHERE customer_id = {id}")
   myresult = mycursor.fetchall()
   return(to_json(myresult))
   
 
 @app.route('/customer', methods=['POST'])
-def add_book():
+def add_customer():
  name= request.json['name']
  surname= request.json['surname']
  sql = "INSERT INTO customer (name, surname) VALUES (%s, %s)"
