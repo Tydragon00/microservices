@@ -1,0 +1,40 @@
+name: CI-CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+name: CI-CD
+
+on: [push]
+  # Allows you to run this workflow manually from the Actions tab
+  #workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}   
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: docker build 1
+      run: |
+        docker build ./microservice/books -t ${{ secrets.DOCKER_USER }}/book-microservice
+    - name: docker build 2
+      run: |
+        docker build ./microservice/costumer -t ${{ secrets.DOCKER_USER }}/customer-microservice
+    - name: docker build 3
+      run: |
+       docker build ./microservice/borrowing -t ${{ secrets.DOCKER_USER }}/borrowing-microservice
+    - name: docker push
+      run: |
+        docker push ${{ secrets.DOCKER_USER }}/book-microservice
+        docker push ${{ secrets.DOCKER_USER }}/customer-microservice
+        docker push ${{ secrets.DOCKER_USER }}/borrowing-microservice
