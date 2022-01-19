@@ -16,7 +16,7 @@ Assignment:
 
 Develop 4 microservices as depicted in this diagram:
 
-![](img/diagram.png)
+![](diagram.png)
 
 Microservices can be developed in any any techology , but they must comply with following constraints:
 
