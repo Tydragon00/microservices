@@ -23,7 +23,7 @@ jobs:
         docker build ./microservice/books -t ${{ secrets.DOCKER_USER }}/book-microservice
     - name: docker build 2
       run: |
-        docker build ./microservice/costumer -t ${{ secrets.DOCKER_USER }}/customer-microservice
+        docker build ./microservice/custumer -t ${{ secrets.DOCKER_USER }}/customer-microservice
     - name: docker build 3
       run: |
        docker build ./microservice/borrowing -t ${{ secrets.DOCKER_USER }}/borrowing-microservice
