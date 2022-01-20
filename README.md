@@ -25,6 +25,24 @@ This script return true or false.
 ![](my_diagram.png)
 
 
+## Logging:
+[Logging](./microservice/Logging_and_tracing): Logging is managed by Elasticsearch and Kibana.
+
+
+
+## For run microservices locally:
+There are two bash script:
+>1. [Start with logging](./microservice/start.sh): Start all microservices with logging.
+>1. [Start without logging](./microservice/start_noLog.sh): Start all microservices without logging.
+
+
+
+
+
+
+
+
+
 
 ## Assignment:
 
