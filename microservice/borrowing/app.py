@@ -6,6 +6,26 @@ from flask import json
 import mysql.connector
 import json
 from datetime import datetime
+import pika
+
+
+
+def send_message(message):
+  #notification setup
+  credentials = pika.PlainCredentials('rabbitmq', 'rabbitmq')
+  parameters = pika.ConnectionParameters('rabbitmq',
+                                    5672,
+                                    '/',
+                                    credentials)
+  connection = pika.BlockingConnection(parameters)
+  channel = connection.channel()
+  channel.queue_declare(queue='borrowing')
+
+  channel.basic_publish(exchange='',
+                    routing_key='borrowing',
+                    body=message)
+  connection.close()
+
 
 #convert result from sql to json
 def to_json(myresult):
@@ -86,6 +106,7 @@ def add_borrowing():
  mydb.commit()
  mycursor.execute("SELECT * FROM borrowing ORDER BY borrowing_id DESC LIMIT 1")
  myresult = mycursor.fetchall()
+ send_message(f"New borrowing: {str(myresult)}")
  return(to_json(myresult))
 
 
