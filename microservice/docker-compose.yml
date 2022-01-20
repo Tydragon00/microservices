@@ -69,7 +69,8 @@ services:
 
   #notification service
   rabbitmq:
-    image: rabbitmq:3-management-alpine
+    #image: rabbitmq:3-management-alpine
+    image: rabbitmq:3.8.19-rc.1-management-alpine
     container_name: 'rabbitmq'
     environment:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
