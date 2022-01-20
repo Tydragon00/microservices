@@ -10,6 +10,20 @@
 >1. [Borrowing microservice](./microservice/borrowing):
 >expose CRUD opereration, use flask framework and mysql database
 
+## Test:
+
+[Test books microservice script](./microservice/books/my_test.py): python script for testing boook microservice, test post, put, get all, get one and delete.
+This script return true or false.
+
+## Notification
+
+[Notification Script](./test/notification.py): python script for run a Subscribe RabbutMQ, this is used for notification when a new borrowing is added.
+
+## Diagram:
+
+
+![](my_diagram.png)
+
 
 
 ## Assignment:
